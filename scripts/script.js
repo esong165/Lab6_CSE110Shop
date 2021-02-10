@@ -1,5 +1,6 @@
 // Script.js
 var cart = new Set();
+
 window.addEventListener('DOMContentLoaded', () => {
   if(localStorage.getItem('cart') !== null){
     cart = new Set(JSON.parse(localStorage.getItem('cart')));
@@ -16,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 });
 
-async function loadProductArray(){
+function loadProductArray(){
   fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
     .then(data => localStorage.setItem('prodArray', JSON.stringify(data)));
