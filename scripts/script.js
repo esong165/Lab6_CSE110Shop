@@ -1,6 +1,5 @@
 // Script.js
 var cart = new Set();
-
 window.addEventListener('DOMContentLoaded', () => {
   if(localStorage.getItem('cart') !== null){
     cart = new Set(JSON.parse(localStorage.getItem('cart')));
@@ -9,18 +8,27 @@ window.addEventListener('DOMContentLoaded', () => {
   if(localStorage.getItem('prodArray') === null){
     loadProductArray();
   }
-  let prodArray = JSON.parse(localStorage.getItem('prodArray'));
-  let i;
-  for(i = 0; i < prodArray.length; i++){
-    const product = prodArray[i];
-    addProduct(product.image, product.title, product.price, product.id);
-  };
+  else{
+    let prodArray = JSON.parse(localStorage.getItem('prodArray'));
+    generateProducts(prodArray);
+  }
 });
+
+function generateProducts(arr){
+  let i;
+    for(i = 0; i < arr.length; i++){
+      const product = arr[i];
+      addProduct(product.image, product.title, product.price, product.id);
+    };
+}
 
 function loadProductArray(){
   fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
-    .then(data => localStorage.setItem('prodArray', JSON.stringify(data)));
+    .then(data => {
+      localStorage.setItem('prodArray', JSON.stringify(data));
+      generateProducts(data);
+    });
 }
 
 function addProduct(src, title, price, id){
