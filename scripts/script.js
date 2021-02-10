@@ -8,9 +8,6 @@ window.addEventListener('DOMContentLoaded', () => {
   if(localStorage.getItem('prodArray') === null){
     loadProductArray();
   }
-  else{
-    console.log(localStorage.getItem('prodArray'));
-  }
   let prodArray = JSON.parse(localStorage.getItem('prodArray'));
   let i;
   for(i = 0; i < prodArray.length; i++){
