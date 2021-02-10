@@ -1,5 +1,6 @@
 // Script.js
 var cart = new Set();
+var productArray;
 window.addEventListener('DOMContentLoaded', () => {
   if(localStorage.getItem('cart') !== null){
     cart = new Set(JSON.parse(localStorage.getItem('cart')));
@@ -9,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     loadProductArray();
   }
   else{
-    const prodArray = JSON.parse(localStorage.getItem('prodArray'));
+    prodArray = JSON.parse(localStorage.getItem('prodArray'));
   }
   let i;
   for(i = 0; i < prodArray.length; i++){
