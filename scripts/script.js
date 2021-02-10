@@ -5,8 +5,11 @@ window.addEventListener('DOMContentLoaded', () => {
     cart = new Set(JSON.parse(localStorage.getItem('cart')));
     document.getElementById('cart-count').innerHTML = cart.size;
   }
-  if(localStorage.getItem('prodArray') == null){
+  if(localStorage.getItem('prodArray') === null){
     loadProductArray();
+  }
+  else{
+    console.log(localStorage.getItem('prodArray'));
   }
   let prodArray = JSON.parse(localStorage.getItem('prodArray'));
   let i;
@@ -16,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 });
 
-function loadProductArray(){
+async function loadProductArray(){
   fetch('https://fakestoreapi.com/products')
     .then(response => response.json())
     .then(data => localStorage.setItem('prodArray', JSON.stringify(data)));
